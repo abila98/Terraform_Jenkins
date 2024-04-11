@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-west-1"
+  region = var.region
 }
 
 # Creating VPC
@@ -65,14 +65,14 @@ resource "aws_route_table_association" "jenkins_route_association" {
 
 # Creating EC2 instance
 resource "aws_instance" "jenkins_instance" {
-  ami                         = "ami-0b990d3cfca306617" #amazon linux free tier
+  ami                         = var.ami
   instance_type               = "t2.micro"
   subnet_id                   = aws_subnet.jenkins_subnet.id
   vpc_security_group_ids      = [aws_security_group.jenkins_sg.id]
-  key_name                    = "aws-key"
+  key_name                    = var.aws_key
   associate_public_ip_address = true
   user_data                   = file("user_data.sh")
-  
+
   tags = {
     Name = "Jenkins Instance"
   }

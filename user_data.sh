@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Update package repositories and install Java 8
+# Update package repositories and install Java 11
 sudo yum update -y
 sudo yum install java-11-amazon-corretto-devel -y
 # Download and install Jenkins repository configuration
